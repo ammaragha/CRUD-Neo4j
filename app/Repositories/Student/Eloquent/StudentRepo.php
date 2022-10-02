@@ -3,10 +3,10 @@
 namespace App\Repositories\Student\Eloquent;
 
 use App\Models\Student;
-use App\Repositories\Student\StudentInterface;
+use App\Repositories\Student\StudentRepoInterface;
 use Illuminate\Http\Request;
 
-class StudentRepo implements StudentInterface
+class StudentRepo implements StudentRepoInterface
 {
 
 

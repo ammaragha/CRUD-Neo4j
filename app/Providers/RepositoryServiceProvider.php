@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\Student\StudentInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Student\Eloquent\StudentRepo as EloquentRepo;
 use App\Repositories\Student\Cypher\StudentRepo as CypherRepo;
+use App\Repositories\Student\StudentRepoInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -16,8 +16,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->bind(StudentInterface::class, EloquentRepo::class);
-        //$this->app->bind(StudentInterface::class, CypherRepo::class);
+       $this->app->bind(StudentRepoInterface::class, EloquentRepo::class);
+        //$this->app->bind(StudentRepoInterface::class, CypherRepo::class);
     }
 
     /**

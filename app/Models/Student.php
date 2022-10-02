@@ -14,4 +14,5 @@ class Student extends NeoEloquent
     protected $table = "Student";
     protected $fillable = ["name", "phone"];
     protected $date = ["deleted_at"];
+    public $timestamps = false;
 }

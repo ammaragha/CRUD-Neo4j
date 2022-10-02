@@ -33,9 +33,7 @@ class StudentImport implements ToCollection
         foreach ($collection as $row) {
             $data[] = array(
                 'name' => $row[0],
-                'created_at' => $row[1],
-                'updated_at' => $row[2],
-                'phone' => $row[3],
+                'phone' => $row[1],
             );
         }
 

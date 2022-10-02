@@ -7,7 +7,7 @@ use App\Http\Requests\Student\StudentRequest;
 use App\Http\Requests\Student\UpdateStudentRequest;
 use App\Http\Resources\Student\StudentResource;
 use App\Models\Student;
-use App\Repositories\Student\StudentInterface;
+use App\Repositories\Student\StudentRepoInterface;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 
@@ -15,9 +15,9 @@ class StudentController extends Controller
 {
     use ResponseTrait;
 
-    private StudentInterface $stdRepo;
+    private StudentRepoInterface $stdRepo;
 
-    public function __construct(StudentInterface $stdRepo)
+    public function __construct(StudentRepoInterface $stdRepo)
     {
         $this->stdRepo = $stdRepo;
     }

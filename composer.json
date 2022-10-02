@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
@@ -17,7 +17,8 @@
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.3",
         "maatwebsite/excel": "^3.1",
-        "vinelab/neoeloquent": "^1.8"
+        "vinelab/neoeloquent": "^1.8",
+        "laudis/neo4j-php-client": "^2.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
