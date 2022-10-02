@@ -19,7 +19,7 @@ class StudentRepo implements StudentRepoInterface
     public function connectionNeo4j()
     {
         $client = ClientBuilder::create()
-            ->withDriver('bolt', 'bolt://neo4j:root@localhost:7687?database=neo4j') // creates a bolt driver
+            ->withDriver('bolt', 'bolt://'.env('DB_USERNAME').':'.env('DB_PASSWORD').'@localhost:'.env('DB_PORT').'?database=neo4j') // creates a bolt driver
             ->withFormatter(\Laudis\Neo4j\Formatter\SummarizedResultFormatter::create())
             ->withDefaultDriver('bolt')
             ->build();

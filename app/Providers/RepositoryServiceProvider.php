@@ -16,8 +16,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->bind(StudentRepoInterface::class, EloquentRepo::class);
-        //$this->app->bind(StudentRepoInterface::class, CypherRepo::class);
+       //$this->app->bind(StudentRepoInterface::class, EloquentRepo::class);
+        $this->app->bind(StudentRepoInterface::class, CypherRepo::class);
     }
 
     /**
