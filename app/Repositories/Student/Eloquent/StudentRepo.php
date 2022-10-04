@@ -38,4 +38,9 @@ class StudentRepo implements StudentRepoInterface
         $student = $this->read($id);
         return $student->delete();
     }
+
+    public function readAll()
+    {
+        return Student::all();
+    }
 }

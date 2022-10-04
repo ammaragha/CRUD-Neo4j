@@ -28,7 +28,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = $this->stdRepo->readAll();
         return StudentResource::collection($students);
     }
 
@@ -71,9 +71,9 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, $id)
     {
-        $updated = $this->stdRepo->update($request,$id);
-        if($updated)
-            return $this->succWithData(new StudentResource($updated),'Student updated!');
+        $updated = $this->stdRepo->update($request, $id);
+        if ($updated)
+            return $this->succWithData(new StudentResource($updated), 'Student updated!');
         else
             return $this->errMsg('Something wrong!');
     }
@@ -90,10 +90,9 @@ class StudentController extends Controller
         if (!$student)
             return $this->errMsg('wrong student or not exist');
         $deleted = $this->stdRepo->delete($id);
-        if($deleted)
-            return $this->succWithData(new StudentResource($student),'Student deleted!');
+        if ($deleted)
+            return $this->succWithData(new StudentResource($student), 'Student deleted!');
         else
-        return $this->errMsg('something wrong');
-
+            return $this->errMsg('something wrong');
     }
 }

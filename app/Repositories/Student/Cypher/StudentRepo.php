@@ -15,21 +15,19 @@ use Laudis\Neo4j\Databags\Statement;
 class StudentRepo implements StudentRepoInterface
 {
 
+    private $table = "Student";
+
 
     public function connectionNeo4j()
     {
         $client = ClientBuilder::create()
-            ->withDriver('bolt', 'bolt://'.env('DB_USERNAME').':'.env('DB_PASSWORD').'@localhost:'.env('DB_PORT').'?database=neo4j') // creates a bolt driver
+            ->withDriver('bolt', 'bolt://' . env('DB_USERNAME') . ':' . env('DB_PASSWORD') . '@localhost:' . env('DB_PORT') . '?database=neo4j') // creates a bolt driver
             ->withFormatter(\Laudis\Neo4j\Formatter\SummarizedResultFormatter::create())
             ->withDefaultDriver('bolt')
             ->build();
 
         return $client;
     }
-
-
-
-    private $table = "Student";
 
     public function create(Request $request)
     {
@@ -67,5 +65,22 @@ class StudentRepo implements StudentRepoInterface
         $query = "MATCH (n) WHERE id(n)=$id DELETE n";
         $result = $this->connectionNeo4j()->run($query, ['id' => $id], 'bolt');
         return $result ? true : false;
+    }
+
+
+    public function readAll()
+    {
+        $query = "MATCH (std:$this->table) RETURN id(std) as id, std.name as name, std.phone as phone";
+        $results = $this->connectionNeo4j()->run($query, [], 'bolt');
+        $students = [];
+        foreach ($results as $student) {
+            //dd($student->get('phone'));
+            $students[] = new IStudent(
+                $student->get('id'),
+                $student->get('name'),
+                $student->get('phone')
+            );
+        }
+        return $students;
     }
 }
